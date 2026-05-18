@@ -51,6 +51,7 @@ func main() {
 			fmt.Println("\tA. Easy >> 5 tries\n\tB. Medium >> 3 tries\n\tC. Hard >> 1 try only")
 			fmt.Println("5. The points you get if you guess correctly depends on the difficulty level")
 			fmt.Println("\tA. Easy >> 1 point\n\tB. Medium >> 3 points\n\tC. Hard >> 5 points")
+			wordgame.UserInput("Press Enter To Continue: ")
 		} else {
 			break
 		}
