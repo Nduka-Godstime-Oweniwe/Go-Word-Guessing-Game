@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"time"
 	wordgame "wordgame/functions"
 )
 
@@ -32,6 +33,9 @@ func main() {
 		fmt.Println("4. Exit")
 		option := wordgame.UserOption("Select An Option: ", 4)
 		if option == 1 {
+			fmt.Println("Loading Game....")
+			time.Sleep(1 * time.Second)
+			fmt.Println("Pls wait a little While...")
 			wordgame.PlayGame()
 		} else if option == 2 {
 			fmt.Printf("High Score: %v\n", wordgame.GetHighScore())
