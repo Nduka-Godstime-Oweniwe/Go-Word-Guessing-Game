@@ -12,7 +12,7 @@ func Replay() int {
 	return UserOption("Select Option: ", 2)
 }
 
-func Game(difficulty int) {
+func Game(Tries int, difficulty int) {
 	score := 0
 	replay := 0
 	for replay != 2 {
@@ -27,12 +27,12 @@ func Game(difficulty int) {
 			if answer != word {
 				fmt.Println("Wrong! Try Again")
 				tries++
-				if tries == difficulty {
+				if tries == Tries {
 					fmt.Println("You failed!")
 					score = 0
 					break
 				}
-				fmt.Printf("You have %v tries left", difficulty-tries)
+				fmt.Printf("You have %v tries left", Tries-tries)
 
 			} else {
 				fmt.Println("Correct!")
@@ -58,5 +58,5 @@ func PlayGame() {
 	fmt.Println("2. Medium")
 	fmt.Println("3. Hard")
 	option := UserOption("Select Option", 3)
-	Game(7 - option*2)
+	Game(7-option*2, option*2-1)
 }
