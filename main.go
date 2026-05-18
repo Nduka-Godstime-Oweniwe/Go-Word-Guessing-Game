@@ -15,7 +15,7 @@ func main() {
 		fmt.Println("4. Exit")
 		option := wordgame.UserOption("Select An Option: ", 4)
 		if option == 1 {
-			wordgame.Game(2)
+			wordgame.PlayGame()
 		} else if option == 2 {
 			fmt.Printf("High Score: %v\n", wordgame.GetHighScore())
 			wordgame.UserInput("Press Enter To Continue: ")
