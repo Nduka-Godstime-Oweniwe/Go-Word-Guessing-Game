@@ -2,12 +2,29 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
+	"runtime"
 	wordgame "wordgame/functions"
 )
+
+func clearScreen() {
+	switch runtime.GOOS {
+	case "windows":
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	default:
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
+}
 
 func main() {
 
 	for {
+		clearScreen()
 		fmt.Println("WORD GUESSING GAME")
 		fmt.Println("1. Play Game")
 		fmt.Println("2. View HighScore")
