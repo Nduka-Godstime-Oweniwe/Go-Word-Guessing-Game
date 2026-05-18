@@ -16,7 +16,8 @@ func Game(Tries int, difficulty int) {
 	score := 0
 	replay := 0
 	for replay != 2 {
-		words := []string{"Yes", "No", "Maybe", "Sharp"}
+		clearScreen()
+		words := []string{"Yes", "No", "Maybe", "Sharp", "Mathematics", "Learn", "Gifted", "DataBase"}
 		word := strings.ToLower(words[rand.Intn(len(words))])
 		shuffledWord := Shuffle(word)
 		fmt.Println(shuffledWord)
@@ -36,7 +37,7 @@ func Game(Tries int, difficulty int) {
 
 			} else {
 				fmt.Println("Correct!")
-				fmt.Println("You Won")
+				fmt.Println("You Won!")
 				score += difficulty
 				highscore := GetHighScore()
 				if score > highscore {
@@ -54,9 +55,10 @@ func Game(Tries int, difficulty int) {
 }
 
 func PlayGame() {
+	clearScreen()
 	fmt.Println("1. Easy")
 	fmt.Println("2. Medium")
 	fmt.Println("3. Hard")
-	option := UserOption("Select Option", 3)
+	option := UserOption("Select Option: ", 3)
 	Game(7-option*2, option*2-1)
 }
