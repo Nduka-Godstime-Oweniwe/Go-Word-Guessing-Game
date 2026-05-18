@@ -53,6 +53,7 @@ func Shuffle(str string) string {
 			result += slice[shuffledSlice[i]]
 		}
 		if result == str {
+			result = ""
 			continue
 		} else {
 			break
