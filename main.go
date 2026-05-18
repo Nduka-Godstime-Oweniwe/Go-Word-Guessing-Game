@@ -36,6 +36,7 @@ func main() {
 			fmt.Println("Loading Game....")
 			time.Sleep(1 * time.Second)
 			fmt.Println("Pls wait a little While...")
+			time.Sleep(1 * time.Second)
 			wordgame.PlayGame()
 		} else if option == 2 {
 			fmt.Printf("High Score: %v\n", wordgame.GetHighScore())
