@@ -13,12 +13,12 @@ func Replay() int {
 	return UserOption("Select Option: ", 2)
 }
 
-func Game(Tries int, difficulty int) {
+func Game(words []string, Tries int, difficulty int) {
 	score := 0
 	replay := 0
 	for replay != 2 {
 		clearScreen()
-		words := []string{"Yes", "No", "Maybe", "Sharp", "Mathematics", "Learn", "Gifted", "Data", "daisy", "good"}
+		// words := []string{"Yes", "No", "Maybe", "Sharp", "Mathematics", "Learn", "Gifted", "Data", "daisy", "good"}
 		word := strings.ToLower(words[rand.Intn(len(words))])
 		shuffledWord := Shuffle(word)
 		fmt.Println(shuffledWord)
@@ -59,7 +59,12 @@ func Game(Tries int, difficulty int) {
 	}
 }
 
-func PlayGame() {
+func PlayGame(words []string) {
+	if len(words) == 0 {
+		fmt.Println("Sorry There are no words uploaded yet! Pls upload some words to play game")
+		time.Sleep(2 * time.Second)
+		return
+	}
 	clearScreen()
 	fmt.Println("1. Easy")
 	fmt.Println("2. Medium")
@@ -67,5 +72,6 @@ func PlayGame() {
 	option := UserOption("Select Option: ", 3)
 	fmt.Println("Loading....")
 	time.Sleep(2 * time.Second)
-	Game(7-option*2, option*2-1)
+	Game(words, 7-option*2, option*2-1)
+
 }

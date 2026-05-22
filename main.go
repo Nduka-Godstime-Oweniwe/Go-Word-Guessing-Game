@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 	"time"
 	wordgame "wordgame/functions"
 )
@@ -22,27 +23,54 @@ func clearScreen() {
 	}
 }
 
+func Contains(words []string, word string) bool {
+	for i := 0; i < len(words); i++ {
+		if strings.ToUpper(word) == strings.ToUpper(words[i]) {
+			return true
+		}
+	}
+	return false
+}
 func main() {
 
 	for {
 		clearScreen()
 		fmt.Println("WORD GUESSING GAME")
 		fmt.Println("1. Play Game")
-		fmt.Println("2. View HighScore")
-		fmt.Println("3. How To Play")
-		fmt.Println("4. Exit")
-		option := wordgame.UserOption("Select An Option: ", 4)
+		fmt.Println("2. Upload More Words")
+		fmt.Println("3. View HighScore")
+		fmt.Println("4. How To Play")
+		fmt.Println("5. Exit")
+		option := wordgame.UserOption("Select An Option: ", 5)
 		if option == 1 {
 			fmt.Println("Loading Game....")
 			time.Sleep(1 * time.Second)
 			fmt.Println("Pls wait a little While...")
 			time.Sleep(1 * time.Second)
-			wordgame.PlayGame()
+			words := wordgame.GetWords()
+			wordgame.PlayGame(words)
 		} else if option == 2 {
+			user := ""
+			words := wordgame.GetWords()
+			for {
+				user = wordgame.UserInput("Enter Word: ")
+				if user == "" {
+					wordgame.Dumpword(words)
+					break
+				} else if Contains(words, user) {
+					fmt.Printf("The Word \"%v\" already exist in our database! Pls type in another word\n", strings.ToLower(user))
+
+				} else {
+					words = append(words, user)
+				}
+
+			}
+
+		} else if option == 3 {
 			fmt.Printf("High Score: %v\n", wordgame.GetHighScore())
 			wordgame.UserInput("Press Enter To Continue: ")
 
-		} else if option == 3 {
+		} else if option == 4 {
 			fmt.Println("How To Play")
 			fmt.Println("1. A word would be shown on the screen")
 			fmt.Println("2. The letters of the word would be rearranged")
