@@ -15,7 +15,7 @@ func GetWords() []string {
 	var words []string
 	if err != nil {
 		data, _ := json.Marshal([]string{})
-		os.WriteFile("words.json", data, 644)
+		os.WriteFile("words.json", data, 0644)
 		return words
 	} else {
 		err = json.Unmarshal(data, &words)
